@@ -1,4 +1,4 @@
-#take the matrix as an input local changes
+  #take the matrix as an input local changes
 makeCacheMatrix <- function(x = matrix()) {
   invMatrix <- NULL
   
@@ -11,21 +11,23 @@ makeCacheMatrix <- function(x = matrix()) {
   getMatrix <- function() x                             
   setInverse <- function(inverse) invMatrix <<- inverse 
   getInverse <- function() invMatrix                    
-  list(setMatrix = setMatrix, getMatrix = getMatrix,
-       setInverse = setInverse, getInverse = getInverse)
+  list(setMatrix = setMatrix, 
+       getMatrix = getMatrix, 
+       setInverse = setInverse, 
+       getInverse = getInverse)
 }	
 
 
 cacheSolve <- function(x, ...) {	cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'	
-  #get the value of the invertible matrix from the makeCacheMatrix function
+
   invMatrix <- x$getInverse()
-  if(!is.null(invMatrix)) {                       #if inverse matrix is not NULL
-    message("Getting Cached Invertible Matrix")   #Type message: Getting Cached Invertible Matrix 
-    return(invMatrix)                             #return the invertible matrix
+  if(!is.null(invMatrix)) {
+    message("Getting Invertible Matrix From Cached")
+    return(invMatrix)
   }
   
-  #if value of the invertible matrix is NULL then  
+
   MatrixData <- x$getMatrix()                     #get the original Matrix Data 
   invMatrix <- solve(MatrixData, ...)             #use solve function to inverse the matrix
   x$setInverse(invMatrix)                         #set the invertible matrix 
